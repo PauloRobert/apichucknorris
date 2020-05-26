@@ -3,6 +3,7 @@ package br.com.automacao.ChuckNorris;
 import static com.jayway.restassured.RestAssured.given;
 
 import java.io.File;
+import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -42,9 +43,10 @@ public class ListarCategorias {
 		Response response = given().contentType("application/json").get(urlBase);
 		test.log(LogStatus.INFO, "Chamando a Api", urlBase);
 
-		JsonPath QuantidadeCategorias = new JsonPath(response.asString());
+		List<String> QuantidadeCategorias = response.jsonPath().getList("$");
 
-		System.out.println("Quantidade de Cateorias: " + QuantidadeCategorias);
+		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
+
 		if (response.getStatusCode() == 200) {
 			test.log(LogStatus.PASS, "Retorno", response.getBody().prettyPrint());
 			test.assignAuthor("Paulo Roberto");
