@@ -48,7 +48,8 @@ public class ListarCategorias {
 		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
 
 		if (response.getStatusCode() == 200) {
-			test.log(LogStatus.PASS, "Retorno", response.getBody().prettyPrint());
+			test.log(LogStatus.PASS, "Retorno", response.jsonPath().getString("$"));
+
 			test.assignAuthor("Paulo Roberto");
 			test.assignCategory("Api");
 
@@ -58,14 +59,13 @@ public class ListarCategorias {
 		}
 
 	}
-	
-	
+
 	@Test
 	public void CT02_ContandoCategorias() {
 
-		test = report.startTest("CT01_ListarCategorias");
+		test = report.startTest("CT02_ContandoCategorias");
 
-		System.out.println("#### CT01 - Listar Categorias ####\n");
+		System.out.println("#### CT02 - Contando Categorias ####\n");
 
 		Response response = given().contentType("application/json").get(urlBase);
 		test.log(LogStatus.INFO, "Chamando a Api", urlBase);
@@ -74,15 +74,7 @@ public class ListarCategorias {
 
 		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
 
-		if (response.getStatusCode() == 200) {
-			test.log(LogStatus.PASS, "Retorno", response.getBody().prettyPrint());
-			test.assignAuthor("Paulo Roberto");
-			test.assignCategory("Api");
-
-		} else {
-			test.log(LogStatus.FAIL, "Falha ao Chamar a Api", response.getBody().prettyPrint());
-
-		}
+		test.log(LogStatus.PASS, "Retorno", response.jsonPath().getString("$"));
 
 	}
 
