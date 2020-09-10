@@ -11,7 +11,6 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -43,38 +42,21 @@ public class ListarCategorias {
 		Response response = given().contentType("application/json").get(urlBase);
 		test.log(LogStatus.INFO, "Chamando a Api", urlBase);
 
-		List<String> QuantidadeCategorias = response.jsonPath().getList("$");
+		List<String> QuantidadeCategorias = response.jsonPath().get("$");
 
 		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
+		// System.out.println("Categorias: " + response.prettyPrint());
 
 		if (response.getStatusCode() == 200) {
 			test.log(LogStatus.PASS, "Retorno", response.jsonPath().getString("$"));
-
-			test.assignAuthor("Paulo Roberto");
+			test.log(LogStatus.INFO, "Status Code", "200");
+			test.assignAuthor("Jorge Souza");
 			test.assignCategory("Api");
 
 		} else {
 			test.log(LogStatus.FAIL, "Falha ao Chamar a Api", response.getBody().prettyPrint());
 
 		}
-
-	}
-
-	@Test
-	public void CT02_ContandoCategorias() {
-
-		test = report.startTest("CT02_ContandoCategorias");
-
-		System.out.println("#### CT02 - Contando Categorias ####\n");
-
-		Response response = given().contentType("application/json").get(urlBase);
-		test.log(LogStatus.INFO, "Chamando a Api", urlBase);
-
-		List<String> QuantidadeCategorias = response.jsonPath().getList("$");
-
-		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
-
-		test.log(LogStatus.PASS, "Retorno", response.jsonPath().getString("$"));
 
 	}
 
