@@ -15,7 +15,6 @@ import com.jayway.restassured.response.Response;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import br.com.automacao.ChuckNorris.*;
 
 //Ordenar os testes com Junit
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -25,16 +24,12 @@ public class ListarCategorias {
 
 	static ExtentTest test;
 	static ExtentReports report;
-	
-	
-	
-	
 
 	@BeforeClass
 	public static void startTest() {
-		report = new ExtentReports(System.getProperty("user.dir") + "\\relatorios\\ListarCategorias_" + utils.metodoGenerico.dataHoraParaArquivo() + ".html", true);
+		report = new ExtentReports(System.getProperty("user.dir") + "\\relatorios\\ListarCategorias_"
+				+ utils.metodoGenerico.dataHoraParaArquivo() + ".html", true);
 		report.loadConfig(new File(System.getProperty("user.dir") + "\\relatorios\\configuracao\\extent-config.xml"));
-	
 
 	}
 
@@ -43,7 +38,7 @@ public class ListarCategorias {
 
 		test = report.startTest("CT01_ListarCategorias");
 
-		System.out.println("#### CT01 - Listar Cateddgorias ####\n");
+		System.out.println("#### CT01 - Listar Categorias ####\n");
 
 		Response response = given().contentType("application/json").get(urlBase);
 		test.log(LogStatus.INFO, "Chamando a Api", urlBase);
@@ -51,8 +46,7 @@ public class ListarCategorias {
 		List<String> QuantidadeCategorias = response.jsonPath().get("$");
 
 		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
-		// System.out.println("Categorias: " + response.prettyPrint());
-		
+
 		System.out.println(System.getProperty("java.home"));
 
 		if (response.getStatusCode() == 200) {
