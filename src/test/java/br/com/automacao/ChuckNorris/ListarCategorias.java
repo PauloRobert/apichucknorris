@@ -32,8 +32,9 @@ public class ListarCategorias {
 
 	@BeforeClass
 	public static void startTest() {
-		report = new ExtentReports(System.getProperty("user.dir") + "\\relatorios\\ListarCategorias" + utils.metodoGenerico.dataHoraParaArquivo() + ".html", true);
+		report = new ExtentReports(System.getProperty("user.dir") + "\\relatorios\\ListarCategorias_" + utils.metodoGenerico.dataHoraParaArquivo() + ".html", true);
 		report.loadConfig(new File(System.getProperty("user.dir") + "\\relatorios\\configuracao\\extent-config.xml"));
+	
 
 	}
 

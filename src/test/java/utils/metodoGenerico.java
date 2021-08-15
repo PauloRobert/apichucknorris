@@ -19,10 +19,11 @@ public class metodoGenerico {
 
 	}
 	
-	public void escreveRelatorio() {
+	public static String escreveRelatorio() {
 		
-		report = new ExtentReports(System.getProperty("user.dir") + "\\relatorios\\ListarCategorias" + dataHoraParaArquivo() + ".html", true);
-		report.loadConfig(new File(System.getProperty("user.dir") + "\\extent-config.xml"));
+			report = new ExtentReports(System.getProperty("user.dir") + "\\relatorios\\ListarCategorias" + utils.metodoGenerico.dataHoraParaArquivo() + ".html", true);
+			report.loadConfig(new File(System.getProperty("user.dir") + "\\relatorios\\configuracao\\extent-config.xml"));
+		return escreveRelatorio();
 		
 	}
 
