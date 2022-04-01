@@ -18,9 +18,9 @@ import com.relevantcodes.extentreports.LogStatus;
 
 //Ordenar os testes com Junit
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ListarCategorias {
+public class ListarCategoriasJunit4Test {
 
-	String urlBase = "https://api.chucknorris.io/jokes/categories";
+	String urlBase = "https://api.chucknorris.io/jokes/";
 
 	static ExtentTest test;
 	static ExtentReports report;
@@ -40,19 +40,17 @@ public class ListarCategorias {
 
 		System.out.println("#### CT01 - Listar Categorias ####\n");
 
-		Response response = given().contentType("application/json").get(urlBase);
+		Response response = given().contentType("application/json").get(urlBase + "categories");
 		test.log(LogStatus.INFO, "Chamando a Api", urlBase);
 
 		List<String> QuantidadeCategorias = response.jsonPath().get("$");
 
 		System.out.println("Quantidade de Categorias: " + QuantidadeCategorias.size() + "\n");
 
-		System.out.println(System.getProperty("java.home"));
-
 		if (response.getStatusCode() == 200) {
 			test.log(LogStatus.PASS, "Retorno", response.jsonPath().getString("$"));
 			test.log(LogStatus.INFO, "Status Code", "200");
-			test.assignAuthor("Jorge Souza");
+			test.assignAuthor("Paulo Roberto");
 			test.assignCategory("Api");
 
 		} else {
@@ -60,6 +58,52 @@ public class ListarCategorias {
 
 		}
 
+	}
+
+
+	@Test
+	public void CT02_PiadaAleatoria() {
+
+		test = report.startTest("CT02_Piadas Aleatórias");
+
+		System.out.println("#### CT02 - Piadas Aleatórias ####\n");
+
+
+		for (int i = 1; i < 10; i++) {
+			Response response = given().contentType("application/json").get(urlBase + "random");
+			test.log(LogStatus.INFO, "Chamada ",  urlBase);
+
+			if (response.getStatusCode() == 200) {
+				test.log(LogStatus.PASS, "Piada ", + i + " - " + response.jsonPath().getString("value"));
+			} else {
+				test.log(LogStatus.FAIL, "Falha ao Chamar a Api", response.getBody().prettyPrint());
+
+			}
+		}
+	}
+
+
+
+	public void CT03_PiadaPorCategoria() {
+
+		test = report.startTest("CT03_Piadas por Categoria");
+
+		System.out.println("#### CT02 - Piadas Por Categoria ####\n");
+
+
+		for (int i = 1; i < 10; i++) {
+			Response response = given().contentType("application/json").get(urlBase + "random?category={'religion'}");
+			test.log(LogStatus.INFO, "Chamada ",  urlBase);
+
+			if (response.getStatusCode() == 200) {
+				test.log(LogStatus.PASS, "Piada ", + i + " - " + response.jsonPath().getString("value"));
+				test.log(LogStatus.PASS, "Categoria ", + i + " - " + response.jsonPath().getString("categories"));
+
+			} else {
+				test.log(LogStatus.FAIL, "Falha ao Chamar a Api", response.getBody().prettyPrint());
+
+			}
+		}
 	}
 
 	@AfterClass
