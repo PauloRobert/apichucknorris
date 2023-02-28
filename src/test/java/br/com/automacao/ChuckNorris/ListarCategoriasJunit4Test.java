@@ -69,7 +69,7 @@ public class ListarCategoriasJunit4Test {
 		System.out.println("#### CT02 - Piadas Aleatórias ####\n");
 
 
-		for (int i = 1; i < 10; i++) {
+		for (int i = 0; i < 10; i++) {
 			Response response = given().contentType("application/json").get(urlBase + "random");
 			test.log(LogStatus.INFO, "Chamada ",  urlBase);
 
