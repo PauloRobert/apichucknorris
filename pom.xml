@@ -24,6 +24,17 @@
 		<!-- jakarta.xml.bind-api só funciona na v 2.3.3-->
 		<jakarta.xml.bind-api-version>2.3.3</jakarta.xml.bind-api-version>
 		<jaxb-runtime-version>4.0.2</jaxb-runtime-version>
+
+		<!-- Deps Maven-->
+		<maven-clean-plugin-version></maven-clean-plugin-version>
+		<maven-resources-plugin-version></maven-resources-plugin-version>
+		<maven-compiler-plugin-version></maven-compiler-plugin-version>
+		<maven-surefire-plugin-version></maven-surefire-plugin-version>
+		<maven-jar-plugin-version></maven-jar-plugin-version>
+		<maven-install-plugin-version></maven-install-plugin-version>
+		<maven-deploy-plugin-version></maven-deploy-plugin-version>
+		<maven-site-plugin-version></maven-site-plugin-version>
+		<maven-project-info-reports-plugin-version></maven-project-info-reports-plugin-version>
 	</properties>
 
 	<dependencies>
