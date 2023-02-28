@@ -17,6 +17,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<junit-version></junit-version>
+		<rest-assured-version></rest-assured-version>
+		<json-path-version></json-path-version>
+		<extentreports-version></extentreports-version>
+		<jakarta.xml.bind-api-version></jakarta.xml.bind-api-version>
+		<jaxb-runtime-version></jaxb-runtime-version>
 	</properties>
 
 	<dependencies>
